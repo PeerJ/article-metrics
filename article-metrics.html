@@ -28,17 +28,17 @@ Element providing display of an article's metrics data
               <article-metric
                 score="{{ altmetric.cited_by_msm_count }}"
                 label="News"
-                url="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_news"></article-metric>
+                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/news"></article-metric>
 
               <article-metric
                 score="{{ altmetric.cited_by_feeds_count }}"
                 label="Blogs"
-                url="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_blogs"></article-metric>
+                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/blogs"></article-metric>
 
               <article-metric
                 score="{{ altmetric.cited_by_wikipedia_count }}"
                 label="Wikipedia"
-                url="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_wikipedia"></article-metric>
+                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/wikipedia"></article-metric>
             </div>
 
             <div class="metrics metrics-social">
@@ -47,17 +47,17 @@ Element providing display of an article's metrics data
               <article-metric
                 score="{{ altmetric.cited_by_tweeters_count }}"
                 label="Twitter"
-                url="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_twitter"></article-metric>
+                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/twitter"></article-metric>
 
               <article-metric
                 score="{{ altmetric.cited_by_fbwalls_count }}"
                 label="Facebook"
-                url="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_facebook"></article-metric>
+                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/facebook"></article-metric>
 
               <article-metric
                 score="{{ altmetric.readers_count }}"
                 label="Mendeley"
-                url="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_demographics"></article-metric>
+                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/#mendeley_demographics"></article-metric>
             </div>
           </template>
 
@@ -80,7 +80,7 @@ Element providing display of an article's metrics data
               <article-metric
                 score="{{ altmetric.cited_by_peer_review_sites_count }}"
                 label="Reviews"
-                url="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_peer-reviews"></article-metric>
+                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/peer-reviews"></article-metric>
               -->
 
               <template if="{{ publons &amp;&amp; publons.count }}">
@@ -105,7 +105,7 @@ Element providing display of an article's metrics data
               <div class="heading">Altmetric</div>
 
               <div>
-                <a href="https://www.altmetric.com/details.php?citation_id={{ altmetric.altmetric_id}}#details_" target="altmetric" id="altmetric-image">
+                <a href="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/" target="altmetric" id="altmetric-image">
                   <img src="{{ altmetric.images.small }}" alt="Altmetric score: {{ altmetric.score }}">
                 </a>
               </div>
