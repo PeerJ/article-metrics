@@ -15,15 +15,14 @@ a:hover {
   box-shadow: 0 6px 3px -2px #ccc;
 }
 
-.label,
-.score,
-.icon {
+.metric-label,
+.metric-score {
   display: inline-block;
   border-width: 1px;
   border-style: solid;
 }
 
-.label {
+.metric-label {
   background: #fff;
   color: #666;
   padding: 1px 9px;
@@ -32,28 +31,28 @@ a:hover {
   border-color: #ddd;
 }
 
-.label[scored] {
+.metric-label[scored] {
   border-right: none;
 }
 
-.label:not([scored]) {
+.metric-label:not([scored]) {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
-.score {
+.metric-score {
   padding: 1px 6px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
-.score {
+.metric-score {
   background: white;
   color: #92C029;
   border-color: #ddd;
 }
 
-:host(:hover) .score {
+:host(:hover) .metric-score {
   background: #92C029;
   border-color: #92C029;
   color: #fff;

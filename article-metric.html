@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="article-metric.css">
     <template if="{{ score || always }}">
       <a href="{{ url }}" target="_blank">
-        <span class="label" scored?="{{ score }}">{{ label }}</span><template if="{{ score }}"><span class="score">{{ score }}</span></template>
+        <span class="metric-label" scored?="{{ score }}">{{ label }}</span><template if="{{ score }}"><span class="metric-score">{{ score }}</span></template>
       </a>
   </template>
 </polymer-element>
