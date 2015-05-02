@@ -125,19 +125,19 @@ Element providing display of an article's metrics data
       </template>
     </div>
 
+    <!--
     <template if="{{ url }}">
       <core-ajax auto
         url="https://hypothes.is/api/search?uri={{ url }}"
         response="{{ hypothesis }}"
         handleAs="json"></core-ajax>
 
-      <!--
       <core-ajax auto
         url="https://api.genius.com/search/?url={{ url }}"
         response="{{ genius }}"
         handleAs="json"></core-ajax>
-      -->
     </template>
+    -->
 
     <template if="{{ doi }}">
       <core-ajax auto
