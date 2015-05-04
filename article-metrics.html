@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../core-ajax/core-ajax.html">
+<link rel="import" href="../article-tools/article-tools.html">
 <link rel="import" href="article-metric.html">
 
 <!--
@@ -14,11 +15,13 @@ Element providing display of an article's metrics data
 @status alpha
 @homepage https://github.com/peerj/article-metrics
 -->
-<polymer-element name="article-metrics" attributes="doi url" noscript>
+<polymer-element name="article-metrics" attributes="doi url github" noscript>
   <template>
     <link rel="stylesheet" href="article-metrics.css">
 
     <div id="metrics">
+      <article-tools url="{{ url }}" doi="{{ doi }}" github="{{ github }}"></article-tools>
+
       <div layout horizontal>
         <div flex>
           <template if="{{ altmetric &amp;&amp; altmetric.score }}">
@@ -61,42 +64,50 @@ Element providing display of an article's metrics data
             </div>
           </template>
 
-          <div class="metrics metrics-annotations">
-              <div class="heading">Annotations</div>
+          <template if="{{ (hypothesis &amp;&amp; hypothesis.total) || (genius &amp;&amp; genius.count) || (publons &amp;&amp; publons.count) }}">
+            <div class="metrics metrics-annotations">
+                <div class="heading">Annotations</div>
 
-              <article-metric
-                score="{{ hypothesis.total }}"
-                always="true"
-                label="Hypothes.is"
-                url="https://via.hypothes.is/{{ url }}"></article-metric>
+                <template if="{{ hypothesis &amp;&amp; hypothesis.total }}">
+                  <article-metric
+                    score="{{ hypothesis.total }}"
+                    always="true"
+                    label="Hypothes.is"
+                    url="https://via.hypothes.is/{{ url }}"></article-metric>
+                </template>
 
-              <article-metric
-                score="{{ genius.count }}"
-                always="true"
-                label="Genius"
-                url="https://genius.it/{{ url }}"></article-metric>
+                <template if="{{ genius &amp;&amp; genius.count }}">
+                  <article-metric
+                    score="{{ genius.count }}"
+                    always="true"
+                    label="Genius"
+                    url="https://genius.it/{{ url }}"></article-metric>
+                </template>
 
-              <!--
-              <article-metric
-                score="{{ altmetric.cited_by_peer_review_sites_count }}"
-                label="Reviews"
-                url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/peer-reviews"></article-metric>
-              -->
-
-              <template if="{{ publons &amp;&amp; publons.count }}">
+                <!--
                 <article-metric
-                  score="{{ publons.count }}"
-                  label="Reviews in Publons"
-                  url="{{ publons.results[0].article._id.url }}"></article-metric>
-              </template>
+                  score="{{ altmetric.cited_by_peer_review_sites_count }}"
+                  label="Reviews"
+                  url="https://www.altmetric.com/details/{{ altmetric.altmetric_id}}/peer-reviews"></article-metric>
+                -->
 
-              <template if="{{ pubpeer &amp;&amp; pubpeer.status == 'good' &amp;&amp; pubpeer.feedbacks }}">
-                <article-metric
-                  score="{{ pubpeer.feedbacks[0].total_comments }}"
-                  label="Comments in PubPeer"
-                  url="{{ pubpeer.feedbacks[0].url }}"></article-metric>
-              </template>
-            </div>
+                <template if="{{ publons &amp;&amp; publons.count }}">
+                  <article-metric
+                    score="{{ publons.count }}"
+                    label="Reviews in Publons"
+                    url="{{ publons.results[0].article._id.url }}"></article-metric>
+                </template>
+
+                <!--
+                <template if="{{ pubpeer &amp;&amp; pubpeer.status == 'good' &amp;&amp; pubpeer.feedbacks }}">
+                  <article-metric
+                    score="{{ pubpeer.feedbacks[0].total_comments }}"
+                    label="Comments in PubPeer"
+                    url="{{ pubpeer.feedbacks[0].url }}"></article-metric>
+                </template>
+                -->
+              </div>
+            </template>
         </div>
 
         <template if="{{ altmetric &amp;&amp; altmetric.score }}">
