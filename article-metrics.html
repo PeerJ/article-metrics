@@ -1,6 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../core-ajax/core-ajax.html">
-<link rel="import" href="../article-tools/article-tools.html">
 <link rel="import" href="article-metric.html">
 
 <!--
@@ -15,13 +14,11 @@ Element providing display of an article's metrics data
 @status alpha
 @homepage https://github.com/peerj/article-metrics
 -->
-<polymer-element name="article-metrics" attributes="doi url github" noscript>
+<polymer-element name="article-metrics" attributes="doi url github">
   <template>
     <link rel="stylesheet" href="article-metrics.css">
 
     <div id="metrics">
-      <article-tools url="{{ url }}" doi="{{ doi }}" github="{{ github }}"></article-tools>
-
       <div layout horizontal>
         <div flex>
           <template if="{{ altmetric &amp;&amp; altmetric.score }}">
@@ -154,6 +151,7 @@ Element providing display of an article's metrics data
       <core-ajax auto
         url="https://api.altmetric.com/v1/doi/{{ doi }}"
         response="{{ altmetric }}"
+        on-core-response="{{ altmetricResponse }}"
         handleAs="json"></core-ajax>
 
       <template if="{{ altmetric.cited_by_peer_review_sites_count }}">
@@ -175,4 +173,12 @@ Element providing display of an article's metrics data
       </template>
     </template>
   </template>
+
+  <script>
+  Polymer({
+    altmetricResponse: function() {
+      this.removeAttribute('hidden');
+    }
+  })
+  </script>
 </polymer-element>
